@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CategoryController {
-
     @Autowired
     private CategoryService categoryService;
 
@@ -19,7 +18,7 @@ public class CategoryController {
 
     @GetMapping("/category/addCategory")
     public  String addCategory (){
-        return  "category/addCategory";
+        return  "/category/addCategory";
     }
     //New
     @PostMapping("/category/addCategory")
@@ -27,9 +26,10 @@ public class CategoryController {
          categoryService.save(category);
         return "redirect:/category/categories";
     }
-//update Category
-    @RequestMapping(value = "updateCategory/{id}", method = {RequestMethod.GET, RequestMethod.PUT})
-    public String updateRole(Category category) {
+
+    //update Category
+    @RequestMapping(value = "/category/updateCategory/{id}", method = {RequestMethod.GET, RequestMethod.PUT})
+    public String updateCategory(Category category) {
         categoryService.save(category);
         return "redirect:/category/categories";
     }
