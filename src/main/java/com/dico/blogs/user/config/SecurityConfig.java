@@ -43,11 +43,11 @@ public class SecurityConfig {
           http.csrf(auth-> auth.disable());
           http.authorizeRequests(auth->{
               auth.antMatchers("/","/resources/**", "/vendor/**", "/scss/**", "/css/**", "/fonts/**", "/img/**").permitAll();
-              auth.antMatchers("/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll();
-//              auth.antMatchers("/user/**").hasAnyRole("Administrator");
-//              auth.antMatchers("/users").hasAnyRole("Administrator");
-//              auth.antMatchers("/post/**").hasAnyRole("Administrator","Editor");
-//              auth.antMatchers("/category/**").hasAnyRole("Administrator");
+                      auth.antMatchers("/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll();
+        //           auth.antMatchers("/user/**").hasAnyRole("Administrator");
+        //           auth.antMatchers("/users").hasAnyRole("Administrator");
+        //           auth.antMatchers("/post/**").hasAnyRole("Administrator","Editor");
+        //           auth.antMatchers("/category/**").hasAnyRole("Administrator");
               auth.anyRequest().permitAll();
           });
         http.formLogin().loginPage("/login").permitAll()
