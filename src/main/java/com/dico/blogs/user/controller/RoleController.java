@@ -33,7 +33,7 @@ public class RoleController {
     }
     @GetMapping("/user/addRole")
     public String addRole() {
-        return "redirect:/user/roles";
+        return "/user/addRole";
     }
 
     @PostMapping("/user/addRole")
@@ -56,14 +56,14 @@ public class RoleController {
     }
 
     @RequestMapping("/user/role/assign/{userId}/{roleId}")
-    public String assignRole(@PathVariable Long userId,
+    public String assignRole(@PathVariable Integer userId,
                              @PathVariable Integer roleId) {
         roleService.assignUserRole(userId, roleId);
         return "redirect:/user/userEdit/" + userId;
     }
 
     @RequestMapping("/user/role/unassign/{userId}/{roleId}")
-    public String unassignRole(@PathVariable Long userId,
+    public String unassignRole(@PathVariable Integer userId,
                                @PathVariable Integer roleId) {
         roleService.unassignUserRole(userId, roleId);
         return "redirect:/user/userEdit/" + userId;

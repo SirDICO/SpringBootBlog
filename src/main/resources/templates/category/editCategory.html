@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header text-center"><i class="fa fa fa-bars"></i>Category Management || Edit Category</h3>
+
+            </div>
+        </div>
+        <div class="container" style="margin-top: 100px;">
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <form class="login-form" th:action="@{/category/updateCategory/{id}}" method="post">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_profile"></i><strong>Category Name</strong></span></br>
+            </div>
+                <div class="input-group">
+                    <input type="text" class="form-control" th:value="${category.categoryName}" placeholder="Enter Category Name" autofocus name="categoryName">
+                </div>
+            <div class="form-group" style="margin-top: 20px;">
+                <span class="input-group-addon"><i class="icon_profile"></i><strong>Category Detail</strong></span></br>
+            </div>
+                <div class="form-group" >
+                    <input type="text" class="form-control" th:value="${category.categoryDetail}"  placeholder="Enter Category Detail" autofocus name="categoryDetail">
+                </div>
+
+                <button style="margin-top: 20px;" class="btn btn-primary btn-lg btn-block form-control" type="submit">Save</button>
+
+        </form>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+
+
+
+        </div>
+    </section>
+</div>
+
+
+</body>
+</html>

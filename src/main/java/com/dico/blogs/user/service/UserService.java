@@ -28,12 +28,12 @@ public class UserService {
     }
 
     //Get User By Id
-    public User findById(Long id){
+    public User findById(Integer id){
         return userRepository.findById(id).orElse(null);
     }
 
     //Delete A User
-    public void deleteUser(Long id){
+    public void deleteUser(Integer id){
         userRepository.deleteById(id);
     }
 

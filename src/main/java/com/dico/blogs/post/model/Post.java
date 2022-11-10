@@ -11,11 +11,13 @@ import java.time.LocalDateTime;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Integer Id;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name="category_id", insertable=false, updatable=false)
     private Category category;
+    private Integer category_id;
+
 
     @Column(nullable = false)
     private String title;
@@ -25,15 +27,15 @@ public class Post {
     private LocalDateTime updateDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name="user_id", insertable=false, updatable=false)
     private User user;
-
-    public User getUser() {
-        return user;
+    private Integer user_id;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public Category getCategory() {
@@ -44,11 +46,10 @@ public class Post {
         this.category = category;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return Id;
     }
-
-    public void setId(Long id) {
+    public void setId(Integer id) {
         Id = id;
     }
 
@@ -75,4 +76,12 @@ public class Post {
     public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
+    public Integer getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }
+
 }

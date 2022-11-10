@@ -21,7 +21,7 @@ public class PostService {
     }
 
     //find Post By Id
-    public Post findById(Long id){
+    public Post findById(Integer id){
         return postRepository.findById(id).orElse(null);
     }
 
@@ -32,7 +32,7 @@ public class PostService {
     }
 
     //Delete by Id
-    public void DeleteById(Long id){
+    public void DeleteById(Integer id){
         postRepository.deleteById(id);
     }
 }

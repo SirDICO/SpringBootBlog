@@ -1,0 +1,40 @@
+<!DOCTYPE>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header text-center"><i class="fa fa fa-bars"></i>Category Management || Add Category</h3>
+
+            </div>
+        </div>
+        <div class="container">
+
+            <form class="login-form" th:action="@{/category/addCategory}" method="post">
+                <div class="login-wrap">
+                    <p class="login-img"><i class="icon_lock_alt"></i></p>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_profile"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter Category Name" autofocus name="categoryName">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon_profile"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter Category Detail" autofocus name="categoryDetail">
+                    </div>
+
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </section>
+</div>
+
+
+</body>
+</html>

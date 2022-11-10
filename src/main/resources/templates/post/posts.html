@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+
+
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header text-center"><i class="fa fa fa-bars"></i>Post Management</h3>
+
+            </div>
+        </div>
+        <div class="container">
+            <section class="panel table table-bordered">
+                <div class="panel-heading text-center" style="padding: 10px">
+                    All Post Category </br>
+
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-striped table-advance table-hover">
+                        <tbody>
+                        <tr>
+                            <th></th>
+                            <th><i class="icon_profile"></i> SN</th>
+                            <th><i class="icon_calendar"></i>Title</th>
+                            <th><i class="icon_calendar"></i> Post Date</th>
+                            <th><i class="icon_calendar"></i> Publisher</th>
+                            <th><i class="icon_cogs"></i> Action</th>
+                        </tr>
+                        <tr th:each="post:${posts}">
+                            <td><i class="fa fa-table"></i></td>
+                            <td th:text="${post.id}"></td>
+                            <td th:text="${post.title}"></td>
+                            <td th:text="${post.updateDate}"></td>
+                            <td th:text="${post.user_id}"></td>
+                             <td>
+                                <div class="btn-group">
+                                    <a id="display" th:href="@{'/post/editPost/'+${post.id}}"
+                                       class="btn btn-primary"><i class="icon_pencil-edit"></i>Edit</a>
+                                    <a class="btn btn-danger" onclick="return confirm('Are you sure you want delete?')"
+                                       th:href="@{'/post/deletePost/'+${post.id}}">
+                                        <i class="icon_close_alt2">Delete</i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+        </div>
+    </section>
+</div>
+
+
+</body>
+</html>

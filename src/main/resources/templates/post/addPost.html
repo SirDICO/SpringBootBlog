@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<body>
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header text-center"><i class="fa fa fa-bars"></i>Post Management || Add Post</h3>
+
+            </div>
+        </div>
+        <div class="container">
+
+            <form class="login-form" th:action="@{/post/addPost}" method="post">
+                <div class="login-wrap">
+                    <span class="input-group-addon"><i class="icon_profile"></i>Post Title:</span>
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Enter Post Title" autofocus name="title">
+                    </div>
+                    <div class="form-group" style="margin-top:20px;">
+                        <label class="control-label col-sm-4">Category: </label>
+                        <div class="">
+                            <select class="form-control" id="category" name="category_id">
+                                <option>-SELECT-</option>
+                                <option th:each="category : ${categories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.categoryName}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:20px;">
+                        <div >Blog Post Description || Content</div>
+                        <textarea id="editor1" class="form-control" autofocus name="description"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg btn-block form-control" type="submit">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </section>
+</div>
+
+
+
+</body>
+</html>

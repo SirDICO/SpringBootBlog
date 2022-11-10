@@ -32,10 +32,11 @@ public class userRepositoryTest {
 
 
         //adding data to the user fields
-        user.setUsername("Ikechukwu");
-        user.setPassword("Masterike");
-        user.setFirstname("Ikenna");
+        user.setUsername("Ikenna");
+//        user.setPassword("Masterike");
+        user.setFirstname("Ikenna Divine");
         user.setLastname("Chukwu");
+        user.setPassword("chukwu");
 
         //saving the data in the database
        User savedUser = userRepository.save(user);
@@ -53,7 +54,7 @@ public class userRepositoryTest {
 //
     @Test
     public void testFindUserByUsername(){
-        String username = "Amen";
+        String username = "Ikenna";
         User user = userRepository.findByUsername(username);
         assertThat(user).isNotNull();
     }

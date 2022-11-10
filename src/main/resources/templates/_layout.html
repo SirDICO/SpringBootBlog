@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -27,7 +29,7 @@
     <!-- Template Main CSS Files -->
     <link th:href="@{/assets/css/variables.css}" rel="stylesheet">
     <link th:href="@{/assets/css/main.css}" rel="stylesheet">
-
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
     <!-- =======================================================
     * Template Name: ZenBlog - v1.2.1
     * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
@@ -43,37 +45,24 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
         <a href="index.html" class="logo d-flex align-items-center">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.png" alt=""> -->
-            <h1>ZenBlog</h1>
+
+            <h1>SoundMind</h1>
         </a>
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="single-post.html">Feed</a></li>
-                <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
-                        <li><a href="search-result.html">Search Result</a></li>
-                        <li><a href="#">Drop Down 1</a></li>
-<!--                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>-->
-<!--                            <ul>-->
-<!--                                <li><a href="#">Deep Drop Down 1</a></li>-->
-<!--                                <li><a href="#">Deep Drop Down 2</a></li>-->
-<!--&lt;!&ndash;                                <li><a href="#">Deep Drop Down 3</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <li><a href="#">Deep Drop Down 4</a></li>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <li><a href="#">Deep Drop Down 5</a></li>&ndash;&gt;-->
-<!--                            </ul>-->
-<!--                        </li>-->
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-<!--                        <li><a href="#">Drop Down 4</a></li>-->
-                    </ul>
-                </li>
-
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/blog}">Feed</a></li>
+                <li sec:authorize="hasAuthority('Administrator')"><a  th:href="@{/category}">Category</a></li>
+                <li  sec:authorize="hasAnyRole('Administrator', 'Editor')"><a th:href="@{/post}">Post</a></li>
+                <li sec:authorize="hasRole('Administrator')"><a  th:href="@{/user}">Users</a></li>
+                <li><a th:href="@{/blog}">About</a></li>
+                <li><a th:href="@{/blog}">Contact</a></li>
             </ul>
+            <form th:action="@{/logout}" method="post">
+                <button style="padding-left:10px;" sec:authorize="isAuthenticated()" class="btn btn-default" type="submit">logout</button>
+            </form>
+            <a style="padding-left:10px;" sec:authorize="isAnonymous()" class="btn btn-default"  th:href="@{/login}">login</a>
         </nav><!-- .navbar -->
 
         <div class="position-relative">
@@ -111,90 +100,90 @@
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
 
-    <div class="footer-content">
-        <div class="container">
+<!--    <div class="footer-content">-->
+<!--        <div class="container">-->
 
-            <div class="row g-5">
-                <div class="col-lg-4">
-                    <h3 class="footer-heading">About Tech Blog</h3>
-                    <p>We are a team of rising tech writing giant. We offer anything software technical documentation, instructional tech materials and a whole lot more. We are simply the best. </p>
-                    <p><a href="about" class="footer-link-more">Learn More</a></p>
-                </div>
-                <div class="col-6 col-lg-2">
-                    <h3 class="footer-heading">Navigation</h3>
-                    <ul class="footer-links list-unstyled">
-                        <li><a href="index"><i class="bi bi-chevron-right"></i> Home</a></li>
-                        <li><a href="blog"><i class="bi bi-chevron-right"></i> Blog</a></li>
-                        <li><a href="category"><i class="bi bi-chevron-right"></i> Categories</a></li>
-<!--                        <li><a href="single"><i class="bi bi-chevron-right"></i> Single Post</a></li>-->
-                        <li><a href="about"><i class="bi bi-chevron-right"></i> About us</a></li>
-                        <li><a href="contact"><i class="bi bi-chevron-right"></i> Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-lg-2">
-                    <h3 class="footer-heading">Categories</h3>
-                    <ul class="footer-links list-unstyled">
-                        <li><a href="category"><i class="bi bi-chevron-right"></i> Security</a></li>
-                        <li><a href="category"><i class="bi bi-chevron-right"></i> Data Science</a></li>
-                        <li><a href="category"><i class="bi bi-chevron-right"></i> Software Engineering</a></li>
-                        <li><a href="category"><i class="bi bi-chevron-right"></i>BlockChain Technology </a></li>
+<!--            <div class="row g-5">-->
+<!--                <div class="col-lg-4">-->
+<!--                    <h3 class="footer-heading">About Tech Blog</h3>-->
+<!--                    <p>We are a team of rising tech writing giant. We offer anything software technical documentation, instructional tech materials and a whole lot more. We are simply the best. </p>-->
+<!--                    <p><a href="about" class="footer-link-more">Learn More</a></p>-->
+<!--                </div>-->
+<!--                <div class="col-6 col-lg-2">-->
+<!--                    <h3 class="footer-heading">Navigation</h3>-->
+<!--                    <ul class="footer-links list-unstyled">-->
+<!--                        <li><a href="index"><i class="bi bi-chevron-right"></i> Home</a></li>-->
+<!--                        <li><a href="blog"><i class="bi bi-chevron-right"></i> Blog</a></li>-->
+<!--                        <li><a href="category"><i class="bi bi-chevron-right"></i> Categories</a></li>-->
+<!--&lt;!&ndash;                        <li><a href="single"><i class="bi bi-chevron-right"></i> Single Post</a></li>&ndash;&gt;-->
+<!--                        <li><a href="about"><i class="bi bi-chevron-right"></i> About us</a></li>-->
+<!--                        <li><a href="contact"><i class="bi bi-chevron-right"></i> Contact</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <div class="col-6 col-lg-2">-->
+<!--                    <h3 class="footer-heading">Categories</h3>-->
+<!--                    <ul class="footer-links list-unstyled">-->
+<!--                        <li><a href="category"><i class="bi bi-chevron-right"></i> Security</a></li>-->
+<!--                        <li><a href="category"><i class="bi bi-chevron-right"></i> Data Science</a></li>-->
+<!--                        <li><a href="category"><i class="bi bi-chevron-right"></i> Software Engineering</a></li>-->
+<!--                        <li><a href="category"><i class="bi bi-chevron-right"></i>BlockChain Technology </a></li>-->
 
 
-                    </ul>
-                </div>
+<!--                    </ul>-->
+<!--                </div>-->
 
-                <div class="col-lg-4">
-                    <h3 class="footer-heading">Recent Posts</h3>
+<!--                <div class="col-lg-4">-->
+<!--                    <h3 class="footer-heading">Recent Posts</h3>-->
 
-                    <ul class="footer-links footer-blog-entry list-unstyled">
-                        <li>
-                            <a href="single-post.html" class="d-flex align-items-center">
-                                <img src="assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
-                                <div>
-                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <span>5 Great Startup Tips for Female Founders</span>
-                                </div>
-                            </a>
-                        </li>
+<!--                    <ul class="footer-links footer-blog-entry list-unstyled">-->
+<!--                        <li>-->
+<!--                            <a href="single-post.html" class="d-flex align-items-center">-->
+<!--                                <img src="assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">-->
+<!--                                <div>-->
+<!--                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
+<!--                                    <span>5 Great Startup Tips for Female Founders</span>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
-                        <li>
-                            <a href="single-post.html" class="d-flex align-items-center">
-                                <img src="assets/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
-                                <div>
-                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <span>What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</span>
-                                </div>
-                            </a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a href="single-post.html" class="d-flex align-items-center">-->
+<!--                                <img src="assets/img/post-sq-2.jpg" alt="" class="img-fluid me-3">-->
+<!--                                <div>-->
+<!--                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
+<!--                                    <span>What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</span>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
-                        <li>
-                            <a href="single-post.html" class="d-flex align-items-center">
-                                <img src="assets/img/post-sq-3.jpg" alt="" class="img-fluid me-3">
-                                <div>
-                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <span>Life Insurance And Pregnancy: A Working Mom’s Guide</span>
-                                </div>
-                            </a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a href="single-post.html" class="d-flex align-items-center">-->
+<!--                                <img src="assets/img/post-sq-3.jpg" alt="" class="img-fluid me-3">-->
+<!--                                <div>-->
+<!--                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
+<!--                                    <span>Life Insurance And Pregnancy: A Working Mom’s Guide</span>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
-                        <li>
-                            <a href="single-post.html" class="d-flex align-items-center">
-                                <img src="assets/img/post-sq-4.jpg" alt="" class="img-fluid me-3">
-                                <div>
-                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <span>How to Avoid Distraction and Stay Focused During Video Calls?</span>
-                                </div>
-                            </a>
-                        </li>
+<!--                        <li>-->
+<!--                            <a href="single-post.html" class="d-flex align-items-center">-->
+<!--                                <img src="assets/img/post-sq-4.jpg" alt="" class="img-fluid me-3">-->
+<!--                                <div>-->
+<!--                                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
+<!--                                    <span>How to Avoid Distraction and Stay Focused During Video Calls?</span>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
-                    </ul>
+<!--                    </ul>-->
 
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <div class="footer-legal">
+    <div class="footer-legal fixed-bottom">
         <div class="container">
 
             <div class="row justify-content-between">
@@ -242,6 +231,9 @@
 
 <!-- Template Main JS File -->
 <script th:src="@{/assets/js/main.js}"></script>
+<script type="text/javascript">
+  	CKEDITOR.replace('editor1');
+  </script>
 
 </body>
 

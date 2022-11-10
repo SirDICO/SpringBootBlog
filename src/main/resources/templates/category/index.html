@@ -1,0 +1,44 @@
+64
+5+786+-*+*</!DOCTYPE html>/*-/
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<body>
+
+
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header text-center"><i class="fa fa fa-bars"></i>Category Management</h3>
+
+            </div>
+        </div>
+        <div class="container">
+            <section class="panel table table-bordered">
+                <div class="panel-heading text-center" style="padding: 10px">
+                    All Post Category </br>
+
+                </div>
+
+               <div class="text-center">
+                   <div class="row">
+                       <div class="col-lg-6">
+                           <a th:href="@{/category}" class="jumbo-tron">Home</a>
+                       </div>
+                       <div class="col-lg-6">
+
+                           <a th:href="@{/category/categories}"
+                              class="jumbo-tron">Category</a>
+                       </div>
+                   </div>
+               </div>
+
+            </section>
+        </div>
+    </section>
+</div>
+
+
+</body>
+</html>

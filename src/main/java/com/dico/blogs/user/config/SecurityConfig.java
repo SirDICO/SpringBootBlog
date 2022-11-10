@@ -4,10 +4,13 @@ import com.dico.blogs.user.service.CustomerUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -41,8 +44,10 @@ public class SecurityConfig {
           http.authorizeRequests(auth->{
               auth.antMatchers("/","/resources/**", "/vendor/**", "/scss/**", "/css/**", "/fonts/**", "/img/**").permitAll();
               auth.antMatchers("/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll();
-              auth.antMatchers("/user/**").authenticated();
-              auth.antMatchers("/users").hasAuthority("Editor");
+//              auth.antMatchers("/user/**").hasAnyRole("Administrator");
+//              auth.antMatchers("/users").hasAnyRole("Administrator");
+//              auth.antMatchers("/post/**").hasAnyRole("Administrator","Editor");
+//              auth.antMatchers("/category/**").hasAnyRole("Administrator");
               auth.anyRequest().permitAll();
           });
         http.formLogin().loginPage("/login").permitAll()
@@ -53,4 +58,6 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+
 }

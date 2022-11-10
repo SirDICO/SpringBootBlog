@@ -53,14 +53,13 @@ public class UserController {
     }
     //Get single user by Id
     @GetMapping("/user/{op}/{id}")
-    public String getSingleUser(@PathVariable Long id, @PathVariable String op, Model model){
+    public String getSingleUser(@PathVariable Integer id, @PathVariable String op, Model model){
         User user = userService.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("userRoles", roleService.getUserRoles(user));
         model.addAttribute("userNotRoles", roleService.getUserNotRoles(user));
         return "/user/" + op;
     }
-
     //Add New User
     @PostMapping("/user/addUser")
     public RedirectView addUser(User user, RedirectAttributes redir) {

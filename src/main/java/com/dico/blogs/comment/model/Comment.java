@@ -15,11 +15,13 @@ public class Comment {
 
     private String content;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name="user_id", insertable=false, updatable=false)
     private User user;
+    private Integer user_id;
     @ManyToOne
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name="post_id", insertable=false, updatable=false)
     private Post post;
+    private Integer post_id;
 
     private LocalDateTime CommentDate;
 

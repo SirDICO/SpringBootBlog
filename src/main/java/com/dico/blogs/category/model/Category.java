@@ -29,8 +29,9 @@ public class Category {
     private LocalDateTime updateDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name="user_id", insertable=false, updatable=false)
     private User user;
+    private Integer user_id;
 
     public User getUser() {
         return user;
